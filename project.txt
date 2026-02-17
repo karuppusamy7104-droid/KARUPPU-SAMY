@@ -1,0 +1,100 @@
+// Room.java
+public class Room {
+    private int roomNumber;
+    private String type;
+    private double rate;
+
+    public Room(int roomNumber, String type, double rate) {
+        this.roomNumber = roomNumber;
+        this.type = type;
+        this.rate = rate;
+    }
+
+    // Getters and setters
+    public int getRoomNumber() { return roomNumber; }
+    public String getType() { return type; }
+    public double getRate() { return rate; }
+}
+
+// Customer.java
+public class Customer {
+    private String name;
+    private String address;
+    private String phoneNumber;
+
+    public Customer(String name, String address, String phoneNumber) {
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
+
+    // Getters and setters
+    public String getName() { return name; }
+    public String getAddress() { return address; }
+    public String getPhoneNumber() { return phoneNumber; }
+}
+
+// Booking.java
+public class Booking {
+    private int bookingID;
+    private Customer customer;
+    private Room room;
+    private Date checkInDate;
+
+    public Booking(int bookingID, Customer customer, Room room, Date checkInDate) {
+        this.bookingID = bookingID;
+        this.customer = customer;
+        this.room = room;
+        this.checkInDate = checkInDate;
+    }
+
+    // Getters and setters
+    public int getBookingID() { return bookingID; }
+    public Customer getCustomer() { return customer; }
+    public Room getRoom() { return room; }
+    public Date getCheckInDate() { return checkInDate; }
+}
+
+// HotelManagement.java
+import java.util.ArrayList;
+import java.util.List;
+
+public class HotelManagement {
+    private List<Room> rooms;
+    private List<Customer> customers;
+    private List<Booking> bookings;
+
+    public HotelManagement() {
+        rooms = new ArrayList<>();
+        customers = new ArrayList<>();
+        bookings = new ArrayList<>();
+    }
+
+    // Methods to add, book, and cancel rooms
+    public void addRoom(Room room) { rooms.add(room); }
+    public void bookRoom(Booking booking) { bookings.add(booking); }
+    public void cancelBooking(int bookingID) { /* implement cancel logic */ }
+}
+
+// Main.java
+public class Main {
+    public static void main(String[] args) {
+        HotelManagement hotel = new HotelManagement();
+
+        // Add rooms
+        hotel.addRoom(new Room(101, "Single", 1000.0));
+        hotel.addRoom(new Room(102, "Double", 2000.0));
+
+        // Book a room
+        Customer customer = new Customer("John Doe", "123 Main St", "1234567890");
+        Room room = new Room(101, "Single", 1000.0);
+        Booking booking = new Booking(1, customer, room, new Date());
+        hotel.bookRoom(booking);
+
+        // Display booking details
+        System.out.println("Booking ID: " + booking.getBookingID());
+        System.out.println("Customer Name: " + booking.getCustomer().getName());
+        System.out.println("Room Number: " + booking.getRoom().getRoomNumber());
+    }
+}
+
